@@ -1,1 +1,58 @@
-
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e8433f"><title>UTbe SEO Admin</title>
+<style>
+*{box-sizing:border-box;margin:0}body{font-family:system-ui,sans-serif;background:#f6f6f8;color:#222;padding-bottom:30px}
+svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;vertical-align:middle}
+header{background:linear-gradient(120deg,#ff5a4f,#c2307f);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.tabs{display:flex;gap:6px;padding:10px;overflow:auto}.tabs button{border:0;padding:10px 16px;border-radius:20px;background:#fff;cursor:pointer;white-space:nowrap}.tabs .on{background:#f2453d;color:#fff}
+.card{background:#fff;border-radius:12px;padding:14px;margin:10px;box-shadow:0 1px 6px #0002}
+.btn{border:0;border-radius:8px;padding:8px 12px;background:#f2453d;color:#fff;cursor:pointer;font-weight:600;margin:2px}.btn.g{background:#ddd;color:#222}.btn.k{background:#2a9d3a}
+input{padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit;width:100%;margin:6px 0}
+.r{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}.mu{color:#777;font-size:13px}
+.ov{position:fixed;inset:0;background:#0007;display:grid;place-items:center;z-index:9}.md{background:#fff;border-radius:16px;padding:20px;width:min(92%,380px)}
+</style></head><body><div id="app"></div>
+<script type="module">
+import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,updateDoc,increment,collection,getDocs,deleteDoc,query,orderBy,limit} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+const fb=initializeApp({apiKey:"AIzaSyADFLvww4vFLbYpE5I6AYcKQwQELJLB2pg",authDomain:"unlimitedpower-a6c9e.firebaseapp.com",projectId:"unlimitedpower-a6c9e",storageBucket:"unlimitedpower-a6c9e.firebasestorage.app",messagingSenderId:"229075222841",appId:"1:229075222841:web:1a22d8c1ce0cbecb7f28e8"});
+const auth=getAuth(fb),db=getFirestore(fb),ADMIN="aladdincharlotte@gmail.com";
+const $=s=>document.querySelector(s),fmt=n=>Number(n||0).toLocaleString();
+let tab='pay',D={pay:[],usr:[],vid:[],cl:[]},qs='';
+const rows=async c=>(await getDocs(collection(db,c))).docs.map(d=>({id:d.id,...d.data()}));
+const modal=h=>{$('#ov')?.remove();const d=document.createElement('div');d.className='ov';d.id='ov';d.innerHTML=`<div class="md">${h}</div>`;d.onclick=e=>{if(e.target==d)d.remove()};document.body.append(d)};
+window.cl=()=>$('#ov')?.remove();
+onAuthStateChanged(auth,u=>{if(!u||u.email!==ADMIN){if(u)signOut(auth);return loginUI()}load()});
+function loginUI(){$('#app').innerHTML=`<header><b>UTbe SEO Admin</b></header><div class="card"><input id="e" type="email" placeholder="Admin email"><input id="p" type="password" placeholder="Password"><button class="btn" id="go">Sign in</button><p class="mu" id="er" style="color:#c33"></p></div>`;
+ $('#go').onclick=()=>signInWithEmailAndPassword(auth,$('#e').value,$('#p').value).then(r=>{if(r.user.email!==ADMIN)$('#er').textContent='Not an admin account'}).catch(x=>$('#er').textContent=x.message)}
+async function load(){[D.pay,D.usr,D.vid,D.cl]=await Promise.all(['payments','users','videos','claims'].map(rows));draw()}
+function draw(){const T=[['pay','Payments'],['usr','Users'],['vid','Campaigns'],['cl','Claims']];
+ const pend=D.pay.filter(p=>p.status=='pending').length;
+ $('#app').innerHTML=`<header><b>UTbe SEO Admin</b><button class="btn g" id="lo">Log out</button></header>
+ <div class="card r"><span>Users <b>${D.usr.length}</b></span><span>Pending payments <b>${pend}</b></span><span>Campaigns <b>${D.vid.length}</b></span><span>Revenue <b>₦${fmt(D.pay.filter(p=>p.status=='approved').reduce((a,p)=>a+p.amount,0))}</b></span></div>
+ <div class="tabs">${T.map(t=>`<button class="${tab==t[0]?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>${view()}`;
+ $('#lo').onclick=()=>signOut(auth)}
+function view(){
+ if(tab=='pay')return[...D.pay].sort((a,b)=>b.t-a.t).map(p=>`<div class="card"><div class="r"><b>${p.name||''} · ${p.email}</b><b>₦${fmt(p.amount)}</b></div><div class="mu">${p.kind=='vip'?'VIP '+p.months+' mo':fmt(p.coins)+' coins'} · ref ${p.ref} · ${new Date(p.t).toLocaleString()}</div><div class="r"><span class="mu">${p.status}</span><span>${p.status=='pending'?`<button class="btn k" data-a="ap" data-id="${p.id}">Approve</button><button class="btn g" data-a="rj" data-id="${p.id}">Reject</button>`:''}</span></div></div>`).join('')||'<div class="card mu">No payments</div>';
+ if(tab=='usr'){const l=D.usr.filter(u=>(u.email+u.name+u.ref).toLowerCase().includes(qs.toLowerCase()));
+  return`<div style="padding:0 10px"><input id="q" placeholder="Search users" value="${qs}"></div>`+l.map(u=>`<div class="card"><div class="r"><b>${u.name}${u.banned?' (banned)':''}</b><b>${fmt(u.coins)} coins</b></div><div class="mu">${u.email} · code ${u.ref}${u.vipUntil>Date.now()?' · VIP':''}</div><div><button class="btn" data-a="co" data-id="${u.id}" data-s="1">Add coin</button><button class="btn g" data-a="co" data-id="${u.id}" data-s="-1">Deduct</button><button class="btn g" data-a="vp" data-id="${u.id}">+30d VIP</button><button class="btn g" data-a="bn" data-id="${u.id}">${u.banned?'Unban':'Ban'}</button><button class="btn" data-a="du" data-id="${u.id}">Delete</button></div></div>`).join('')}
+ if(tab=='vid')return D.vid.sort((a,b)=>b.t-a.t).map(v=>`<div class="card"><div class="r"><b>${v.type.toUpperCase()}${v.premium?' ★':''} · ${v.status}</b><span>${v.done||0}/${v.qty} · ${fmt(v.coins)}c</span></div><div class="mu" style="word-break:break-all">${v.url}<br>Time ${v.sec||'-'}s · Reward ${v.reward||'default'}</div>${v.comments?`<div class="mu">${v.comments.join(' | ')}</div>`:''}<div>${v.status=='review'?`<button class="btn k" data-a="va" data-id="${v.id}">Approve</button>`:''}<button class="btn g" data-a="ed" data-id="${v.id}">Edit time/reward/qty</button><button class="btn" data-a="dv" data-id="${v.id}">Delete</button></div></div>`).join('')||'<div class="card mu">None</div>';
+ return[...D.cl].sort((a,b)=>b.t-a.t).slice(0,100).map(c=>`<div class="card r"><span>${c.type} · ${c.uid.slice(0,8)}…</span><span class="mu">${new Date(c.t).toLocaleString()}</span></div>`).join('')||'<div class="card mu">None</div>'}
+const by=(c,id)=>D[c].find(x=>x.id==id);
+document.addEventListener('input',e=>{if(e.target.id=='q'){qs=e.target.value;const p=e.target.selectionStart;draw();const q=$('#q');q.focus();q.setSelectionRange(p,p)}});
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-t]');if(t){tab=t.dataset.t;return draw()}
+ const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id;
+ if(a=='ap'){const p=by('pay',id);if(p.status!='pending')return;
+  if(p.kind=='vip'){const u=by('usr',p.uid);await updateDoc(doc(db,'users',p.uid),{vipUntil:Math.max(Date.now(),u?.vipUntil||0)+p.months*30*864e5})}else await updateDoc(doc(db,'users',p.uid),{coins:increment(p.coins)});
+  await updateDoc(doc(db,'payments',id),{status:'approved'});load()}
+ if(a=='rj'){await updateDoc(doc(db,'payments',id),{status:'rejected'});load()}
+ if(a=='co'){const s=+b.dataset.s;modal(`<h3>${s>0?'Add':'Deduct'} coins</h3><input id="am" type="number" placeholder="Amount"><button class="btn" id="ok">Confirm</button>`);$('#ok').onclick=async()=>{const n=Math.abs(+$('#am').value);if(!n)return;await updateDoc(doc(db,'users',id),{coins:increment(n*s)});cl();load()}}
+ if(a=='vp'){const u=by('usr',id);await updateDoc(doc(db,'users',id),{vipUntil:Math.max(Date.now(),u.vipUntil||0)+30*864e5});load()}
+ if(a=='bn'){await updateDoc(doc(db,'users',id),{banned:!by('usr',id).banned});load()}
+ if(a=='du'&&confirm('Delete this user record? (Auth login remains until removed in Firebase console)')){await deleteDoc(doc(db,'users',id));load()}
+ if(a=='va'){await updateDoc(doc(db,'videos',id),{status:'active'});load()}
+ if(a=='dv'&&confirm('Delete campaign?')){await deleteDoc(doc(db,'videos',id));load()}
+ if(a=='ed'){const v=by('vid',id);modal(`<h3>Edit campaign</h3><label class="mu">Watch seconds (can exceed 700)</label><input id="s" type="number" value="${v.sec||45}"><label class="mu">Reward coins (custom)</label><input id="rw" type="number" value="${v.reward||''}"><label class="mu">Quantity (add bonus views)</label><input id="qy" type="number" value="${v.qty}"><button class="btn" id="ok">Save</button>`);
+  $('#ok').onclick=async()=>{const d={sec:+$('#s').value||45,qty:+$('#qy').value||v.qty};if($('#rw').value)d.reward=+$('#rw').value;await updateDoc(doc(db,'videos',id),d);cl();load()}}});
+</script></body></html>
