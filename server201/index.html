@@ -2,42 +2,47 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#e8433f"><title>UTbe SEO Admin</title>
 <style>
-*{box-sizing:border-box;margin:0}body{font-family:system-ui,sans-serif;background:#f6f6f8;color:#222;padding-bottom:30px}
-svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;vertical-align:middle}
+*{box-sizing:border-box;margin:0}body{font-family:system-ui,sans-serif;background:#f6f6f8;color:#222;padding-bottom:40px}
 header{background:linear-gradient(120deg,#ff5a4f,#c2307f);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
 .tabs{display:flex;gap:6px;padding:10px;overflow:auto}.tabs button{border:0;padding:10px 16px;border-radius:20px;background:#fff;cursor:pointer;white-space:nowrap}.tabs .on{background:#f2453d;color:#fff}
 .card{background:#fff;border-radius:12px;padding:14px;margin:10px;box-shadow:0 1px 6px #0002}
-.btn{border:0;border-radius:8px;padding:8px 12px;background:#f2453d;color:#fff;cursor:pointer;font-weight:600;margin:2px}.btn.g{background:#ddd;color:#222}.btn.k{background:#2a9d3a}
-input{padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit;width:100%;margin:6px 0}
+.btn{border:0;border-radius:8px;padding:9px 13px;background:#f2453d;color:#fff;cursor:pointer;font-weight:600;margin:2px}.btn.g{background:#ddd;color:#222}.btn.k{background:#2a9d3a}
+input,select,textarea{padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit;width:100%;margin:5px 0}
 .r{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}.mu{color:#777;font-size:13px}
-.ov{position:fixed;inset:0;background:#0007;display:grid;place-items:center;z-index:9}.md{background:#fff;border-radius:16px;padding:20px;width:min(92%,380px)}
-</style></head><body><div id="app"></div>
+.ov{position:fixed;inset:0;background:#0007;display:grid;place-items:center;z-index:9}.md{background:#fff;border-radius:16px;padding:20px;width:min(94%,400px);max-height:90vh;overflow:auto}
+#t{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:20px;display:none;z-index:99}
+</style></head><body><div id="app"></div><div id="t"></div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,signOut} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,updateDoc,increment,collection,getDocs,deleteDoc,query,orderBy,limit} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getAuth,onAuthStateChanged,signInWithPopup,GoogleAuthProvider,signOut,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,updateDoc,addDoc,increment,collection,getDocs,deleteDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 const fb=initializeApp({apiKey:"AIzaSyADFLvww4vFLbYpE5I6AYcKQwQELJLB2pg",authDomain:"unlimitedpower-a6c9e.firebaseapp.com",projectId:"unlimitedpower-a6c9e",storageBucket:"unlimitedpower-a6c9e.firebasestorage.app",messagingSenderId:"229075222841",appId:"1:229075222841:web:1a22d8c1ce0cbecb7f28e8"});
-const auth=getAuth(fb),db=getFirestore(fb),ADMIN="aladdincharlotte@gmail.com";
+const auth=getAuth(fb),db=getFirestore(fb),fn=getFunctions(fb),ADMIN="aladdincharlotte@gmail.com";
 const $=s=>document.querySelector(s),fmt=n=>Number(n||0).toLocaleString();
-let tab='pay',D={pay:[],usr:[],vid:[],cl:[]},qs='';
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toast=m=>{const t=$('#t');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500)};
+window.addEventListener('unhandledrejection',e=>toast(String(e.reason?.message||'Error').replace('Firebase: ','').slice(0,160)));
+let tab='pay',D={pay:[],usr:[],vid:[],cl:[],bc:[]},qs='';
 const rows=async c=>(await getDocs(collection(db,c))).docs.map(d=>({id:d.id,...d.data()}));
 const modal=h=>{$('#ov')?.remove();const d=document.createElement('div');d.className='ov';d.id='ov';d.innerHTML=`<div class="md">${h}</div>`;d.onclick=e=>{if(e.target==d)d.remove()};document.body.append(d)};
-window.cl=()=>$('#ov')?.remove();
-onAuthStateChanged(auth,u=>{if(!u||u.email!==ADMIN){if(u)signOut(auth);return loginUI()}load()});
-function loginUI(){$('#app').innerHTML=`<header><b>UTbe SEO Admin</b></header><div class="card"><input id="e" type="email" placeholder="Admin email"><input id="p" type="password" placeholder="Password"><button class="btn" id="go">Sign in</button><p class="mu" id="er" style="color:#c33"></p></div>`;
- $('#go').onclick=()=>signInWithEmailAndPassword(auth,$('#e').value,$('#p').value).then(r=>{if(r.user.email!==ADMIN)$('#er').textContent='Not an admin account'}).catch(x=>$('#er').textContent=x.message)}
-async function load(){[D.pay,D.usr,D.vid,D.cl]=await Promise.all(['payments','users','videos','claims'].map(rows));draw()}
-function draw(){const T=[['pay','Payments'],['usr','Users'],['vid','Campaigns'],['cl','Claims']];
- const pend=D.pay.filter(p=>p.status=='pending').length;
+const cl=()=>$('#ov')?.remove();
+const vid=u=>(String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/|live\/)([\w-]{11})/)||[])[1];
+onAuthStateChanged(auth,u=>{if(!u)return loginUI();if(u.email!==ADMIN||!u.emailVerified){signOut(auth);return loginUI('Not an admin account')}load()});
+function loginUI(m=''){$('#app').innerHTML=`<header><b>UTbe SEO Admin</b></header><div class="card"><p class="mu" style="margin-bottom:10px">Sign in with the admin Google account (${ADMIN}).</p><button class="btn" id="go">Continue with Google</button><p style="color:#c33;margin-top:10px">${m}</p></div>`;
+ $('#go').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider())}
+async function load(){[D.pay,D.usr,D.vid,D.cl,D.bc]=await Promise.all(['payments','users','videos','claims','broadcasts'].map(rows));draw()}
+function draw(){const T=[['pay','Payments'],['usr','Users'],['vid','Campaigns'],['add','Add video'],['bc','Broadcast'],['cl','Claims']];
  $('#app').innerHTML=`<header><b>UTbe SEO Admin</b><button class="btn g" id="lo">Log out</button></header>
- <div class="card r"><span>Users <b>${D.usr.length}</b></span><span>Pending payments <b>${pend}</b></span><span>Campaigns <b>${D.vid.length}</b></span><span>Revenue <b>₦${fmt(D.pay.filter(p=>p.status=='approved').reduce((a,p)=>a+p.amount,0))}</b></span></div>
+ <div class="card r"><span>Users <b>${D.usr.length}</b></span><span>Pending <b>${D.pay.filter(p=>p.status=='pending').length}</b></span><span>Campaigns <b>${D.vid.length}</b></span><span>Revenue <b>₦${fmt(D.pay.filter(p=>p.status=='approved').reduce((a,p)=>a+p.amount,0))}</b></span></div>
  <div class="tabs">${T.map(t=>`<button class="${tab==t[0]?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>${view()}`;
  $('#lo').onclick=()=>signOut(auth)}
 function view(){
- if(tab=='pay')return[...D.pay].sort((a,b)=>b.t-a.t).map(p=>`<div class="card"><div class="r"><b>${p.name||''} · ${p.email}</b><b>₦${fmt(p.amount)}</b></div><div class="mu">${p.kind=='vip'?'VIP '+p.months+' mo':fmt(p.coins)+' coins'} · ref ${p.ref} · ${new Date(p.t).toLocaleString()}</div><div class="r"><span class="mu">${p.status}</span><span>${p.status=='pending'?`<button class="btn k" data-a="ap" data-id="${p.id}">Approve</button><button class="btn g" data-a="rj" data-id="${p.id}">Reject</button>`:''}</span></div></div>`).join('')||'<div class="card mu">No payments</div>';
- if(tab=='usr'){const l=D.usr.filter(u=>(u.email+u.name+u.ref).toLowerCase().includes(qs.toLowerCase()));
-  return`<div style="padding:0 10px"><input id="q" placeholder="Search users" value="${qs}"></div>`+l.map(u=>`<div class="card"><div class="r"><b>${u.name}${u.banned?' (banned)':''}</b><b>${fmt(u.coins)} coins</b></div><div class="mu">${u.email} · code ${u.ref}${u.vipUntil>Date.now()?' · VIP':''}</div><div><button class="btn" data-a="co" data-id="${u.id}" data-s="1">Add coin</button><button class="btn g" data-a="co" data-id="${u.id}" data-s="-1">Deduct</button><button class="btn g" data-a="vp" data-id="${u.id}">+30d VIP</button><button class="btn g" data-a="bn" data-id="${u.id}">${u.banned?'Unban':'Ban'}</button><button class="btn" data-a="du" data-id="${u.id}">Delete</button></div></div>`).join('')}
- if(tab=='vid')return D.vid.sort((a,b)=>b.t-a.t).map(v=>`<div class="card"><div class="r"><b>${v.type.toUpperCase()}${v.premium?' ★':''} · ${v.status}</b><span>${v.done||0}/${v.qty} · ${fmt(v.coins)}c</span></div><div class="mu" style="word-break:break-all">${v.url}<br>Time ${v.sec||'-'}s · Reward ${v.reward||'default'}</div>${v.comments?`<div class="mu">${v.comments.join(' | ')}</div>`:''}<div>${v.status=='review'?`<button class="btn k" data-a="va" data-id="${v.id}">Approve</button>`:''}<button class="btn g" data-a="ed" data-id="${v.id}">Edit time/reward/qty</button><button class="btn" data-a="dv" data-id="${v.id}">Delete</button></div></div>`).join('')||'<div class="card mu">None</div>';
+ if(tab=='pay')return[...D.pay].sort((a,b)=>b.t-a.t).map(p=>`<div class="card"><div class="r"><b>${esc(p.name)} · ${esc(p.email)}</b><b>₦${fmt(p.amount)}</b></div><div class="mu">${p.kind=='vip'?'VIP '+p.months+' mo':fmt(p.coins)+' coins'} · ref ${esc(p.ref)} · ${new Date(p.t).toLocaleString()}</div><div class="r"><span class="mu">${p.status}</span><span>${p.status=='pending'?`<button class="btn k" data-a="ap" data-id="${p.id}">Approve</button><button class="btn g" data-a="rj" data-id="${p.id}">Reject</button>`:''}</span></div></div>`).join('')||'<div class="card mu">No payments</div>';
+ if(tab=='usr')return`<div style="padding:0 10px"><input id="q" placeholder="Search users by name, email or code" value="${esc(qs)}"></div>`+D.usr.filter(u=>(u.email+u.name+u.ref).toLowerCase().includes(qs.toLowerCase())).map(u=>`<div class="card"><div class="r"><b>${esc(u.name)}${u.banned?' (banned)':''}</b><b>${fmt(u.coins)} coins</b></div><div class="mu">${esc(u.email)} · code ${esc(u.ref)}${u.vipUntil>Date.now()?' · VIP':''}</div><button class="btn" data-a="eu" data-id="${u.id}">Edit user</button></div>`).join('');
+ if(tab=='vid')return[...D.vid].sort((a,b)=>b.t-a.t).map(v=>`<div class="card"><div class="r"><b>${v.type.toUpperCase()}${v.premium?' ★':''} · ${v.status}</b><span>${v.done||0}/${v.qty}</span></div><div class="mu" style="word-break:break-all">${esc(v.url)}<br>Time ${v.sec||'-'}s · Reward ${v.reward||'default'}</div>${v.comments?`<div class="mu">${v.comments.map(esc).join(' | ')}</div>`:''}<div>${v.status=='review'?`<button class="btn k" data-a="va" data-id="${v.id}">Approve</button>`:''}<button class="btn g" data-a="ed" data-id="${v.id}">Edit time/reward/qty</button><button class="btn" data-a="dv" data-id="${v.id}">Delete</button></div></div>`).join('')||'<div class="card mu">None</div>';
+ if(tab=='add')return`<div class="card"><h3>Add video to the platform</h3><p class="mu">Use this to seed videos and test the View, Subscribe and Like tabs.</p><input id="vu" placeholder="YouTube link"><select id="vt"><option value="view">View</option><option value="watch">Watch time</option><option value="sub">Subscribe + Like</option><option value="like">Like</option></select><input id="vq" type="number" placeholder="Quantity" value="100"><input id="vs" type="number" placeholder="Watch seconds" value="45"><input id="vr" type="number" placeholder="Reward coins (blank = default)"><button class="btn" data-a="av">Add video</button></div>`;
+ if(tab=='bc')return`<div class="card"><h3>Send broadcast</h3><input id="bt" placeholder="Title"><textarea id="bb" rows="5" placeholder="Message body"></textarea><button class="btn" data-a="sb">Send to all users</button></div>`+[...D.bc].sort((a,b)=>b.t-a.t).map(b=>`<div class="card"><div class="r"><b>${esc(b.title)}</b><button class="btn g" data-a="db" data-id="${b.id}">Delete</button></div><div class="mu" style="white-space:pre-wrap">${esc(b.body)}</div><div class="mu">${new Date(b.t).toLocaleString()}</div></div>`).join('');
  return[...D.cl].sort((a,b)=>b.t-a.t).slice(0,100).map(c=>`<div class="card r"><span>${c.type} · ${c.uid.slice(0,8)}…</span><span class="mu">${new Date(c.t).toLocaleString()}</span></div>`).join('')||'<div class="card mu">None</div>'}
 const by=(c,id)=>D[c].find(x=>x.id==id);
 document.addEventListener('input',e=>{if(e.target.id=='q'){qs=e.target.value;const p=e.target.selectionStart;draw();const q=$('#q');q.focus();q.setSelectionRange(p,p)}});
@@ -45,14 +50,23 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-t]')
  const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id;
  if(a=='ap'){const p=by('pay',id);if(p.status!='pending')return;
   if(p.kind=='vip'){const u=by('usr',p.uid);await updateDoc(doc(db,'users',p.uid),{vipUntil:Math.max(Date.now(),u?.vipUntil||0)+p.months*30*864e5})}else await updateDoc(doc(db,'users',p.uid),{coins:increment(p.coins)});
-  await updateDoc(doc(db,'payments',id),{status:'approved'});load()}
+  await updateDoc(doc(db,'payments',id),{status:'approved'});toast('Approved');load()}
  if(a=='rj'){await updateDoc(doc(db,'payments',id),{status:'rejected'});load()}
- if(a=='co'){const s=+b.dataset.s;modal(`<h3>${s>0?'Add':'Deduct'} coins</h3><input id="am" type="number" placeholder="Amount"><button class="btn" id="ok">Confirm</button>`);$('#ok').onclick=async()=>{const n=Math.abs(+$('#am').value);if(!n)return;await updateDoc(doc(db,'users',id),{coins:increment(n*s)});cl();load()}}
- if(a=='vp'){const u=by('usr',id);await updateDoc(doc(db,'users',id),{vipUntil:Math.max(Date.now(),u.vipUntil||0)+30*864e5});load()}
- if(a=='bn'){await updateDoc(doc(db,'users',id),{banned:!by('usr',id).banned});load()}
- if(a=='du'&&confirm('Delete this user record? (Auth login remains until removed in Firebase console)')){await deleteDoc(doc(db,'users',id));load()}
+ if(a=='eu'){const u=by('usr',id);modal(`<h3>Edit user</h3><label class="mu">Name</label><input id="en" value="${esc(u.name)}"><label class="mu">Coin balance (exact)</label><input id="ec" type="number" value="${u.coins||0}"><label class="mu">Add VIP days</label><input id="ev" type="number" placeholder="0"><label class="mu">Email (login)</label><input id="ee" type="email" value="${esc(u.email)}"><label class="mu">New password (min 6, leave blank to keep)</label><input id="ep" type="text" autocomplete="off"><label style="display:flex;gap:8px;align-items:center"><input id="eb" type="checkbox" style="width:auto;margin:0" ${u.banned?'checked':''}> Banned</label>
+  <div style="margin-top:10px"><button class="btn k" id="sv">Save</button><button class="btn g" id="rs">Send reset email</button><button class="btn" id="dl">Delete</button></div><p class="mu">Password and email changes need the Cloud Function deployed. Reset email works without it.</p>`);
+  $('#sv').onclick=async()=>{const d={name:$('#en').value.trim(),coins:Math.max(0,+$('#ec').value||0),banned:$('#eb').checked},dv=+$('#ev').value;
+   if(dv>0)d.vipUntil=Math.max(Date.now(),u.vipUntil||0)+dv*864e5;
+   const pw=$('#ep').value.trim(),em=$('#ee').value.trim();
+   if(pw||em!==u.email){await httpsCallable(fn,'adminUpdateUser')({uid:id,password:pw||undefined,email:em!==u.email?em:undefined});if(em!==u.email)d.email=em}
+   await updateDoc(doc(db,'users',id),d);cl();toast('Saved');load()};
+  $('#rs').onclick=async()=>{await sendPasswordResetEmail(auth,u.email);toast('Reset email sent to '+u.email)};
+  $('#dl').onclick=async()=>{if(confirm('Delete this user record? Their login remains in Firebase Auth.')){await deleteDoc(doc(db,'users',id));cl();load()}}}
  if(a=='va'){await updateDoc(doc(db,'videos',id),{status:'active'});load()}
  if(a=='dv'&&confirm('Delete campaign?')){await deleteDoc(doc(db,'videos',id));load()}
  if(a=='ed'){const v=by('vid',id);modal(`<h3>Edit campaign</h3><label class="mu">Watch seconds (can exceed 700)</label><input id="s" type="number" value="${v.sec||45}"><label class="mu">Reward coins (custom)</label><input id="rw" type="number" value="${v.reward||''}"><label class="mu">Quantity (add bonus views)</label><input id="qy" type="number" value="${v.qty}"><button class="btn" id="ok">Save</button>`);
-  $('#ok').onclick=async()=>{const d={sec:+$('#s').value||45,qty:+$('#qy').value||v.qty};if($('#rw').value)d.reward=+$('#rw').value;await updateDoc(doc(db,'videos',id),d);cl();load()}}});
+  $('#ok').onclick=async()=>{const d={sec:+$('#s').value||45,qty:+$('#qy').value||v.qty};if($('#rw').value)d.reward=+$('#rw').value;await updateDoc(doc(db,'videos',id),d);cl();load()}}
+ if(a=='av'){const v=vid($('#vu').value);if(!v)return toast('Invalid YouTube link');const d={owner:'admin',url:'https://www.youtube.com/watch?v='+v,vid:v,type:$('#vt').value,qty:+$('#vq').value||100,sec:+$('#vs').value||45,coins:0,done:0,status:'active',t:Date.now()};if($('#vr').value)d.reward=+$('#vr').value;
+  await addDoc(collection(db,'videos'),d);toast('Video added. It now shows in user tabs.');tab='vid';load()}
+ if(a=='sb'){const ti=$('#bt').value.trim(),bo=$('#bb').value.trim();if(!ti||!bo)return toast('Enter title and message');await addDoc(collection(db,'broadcasts'),{title:ti,body:bo,t:Date.now()});toast('Broadcast sent');load()}
+ if(a=='db'&&confirm('Delete broadcast?')){await deleteDoc(doc(db,'broadcasts',id));load()}});
 </script></body></html>
