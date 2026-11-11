@@ -1,239 +1,81 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#e8433f"><title>UTbe SEO</title>
-<link rel="manifest" href="manifest.json"><link rel="icon" href="icon-192.png"><link rel="apple-touch-icon" href="icon-192.png"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3899764771871192" crossorigin="anonymous"></script>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#e8433f"><title>UTbe SEO Admin</title>
 <style>
-:root{--r:#f2453d;--bg:#fff;--tx:#222;--mu:#777;--ln:#eee}
-*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
-body{font-family:system-ui,Roboto,sans-serif;color:var(--tx);background:#fff;min-height:100vh;padding-bottom:70px}
-svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;vertical-align:middle}
-header{position:sticky;top:0;z-index:5;display:flex;align-items:center;gap:12px;padding:14px 16px;color:#fff;background:linear-gradient(120deg,#ff5a4f,#f2453d,#c2307f,#ff6a5c);background-size:300% 300%;animation:g 14s ease infinite}
-@keyframes g{50%{background-position:100% 50%}}
-header h1{font-size:19px;flex:1}header b{display:flex;gap:6px;align-items:center;cursor:pointer}
-.ib{background:none;border:0;color:inherit;cursor:pointer}
-.card{margin:10px;padding:14px;border-radius:14px;background:#fff;box-shadow:0 1px 8px #0002;position:relative}
-.btn{border:0;border-radius:8px;padding:12px 16px;background:var(--r);color:#fff;font-weight:700;text-transform:uppercase;cursor:pointer;font-size:14px}
-.btn.g{background:#eee;color:#222}.row{display:flex;gap:10px;margin:10px}.row .btn{flex:1}
-.x{position:absolute;right:8px;bottom:6px}
-.old{text-decoration:line-through;color:#c33}.mu{color:var(--mu)}.c{text-align:center}
-.screen{background:#000;border-radius:10px;aspect-ratio:16/9;position:relative;overflow:hidden;display:grid;place-items:center}
-.screen img{width:100%;height:100%;object-fit:cover}.screen .pl{position:absolute;width:60px;height:60px;border-radius:50%;background:#0009;color:#fff;border:0;cursor:pointer}
-.pl svg{width:32px;height:32px;fill:#fff}
-nav{position:fixed;bottom:0;left:0;right:0;display:flex;background:#fff;border-top:1px solid var(--ln);padding-bottom:env(safe-area-inset-bottom)}
-nav button{flex:1;border:0;background:none;padding:8px;color:#666;font-size:12px;cursor:pointer}nav button.on{color:var(--r);font-weight:700}
-nav svg{display:block;margin:0 auto 2px}
-.ov{position:fixed;inset:0;background:#0007;z-index:20;display:grid;place-items:center;animation:f .2s}
-@keyframes f{from{opacity:0}}
-.md{background:#fff;border-radius:18px;padding:22px;width:min(92%,400px);max-height:85vh;overflow:auto;animation:u .25s}
-@keyframes u{from{transform:translateY(24px);opacity:0}}
-.md h3{margin-bottom:12px}.md p,.md li{font-size:14px;color:#444;line-height:1.5;margin-bottom:8px}
-.opt{display:flex;gap:12px;align-items:center;padding:12px 4px;cursor:pointer;color:#444}
-input,select,textarea{width:100%;padding:12px;border:1px solid #ddd;border-radius:8px;font:inherit;margin:6px 0}
-.drawer{position:fixed;top:0;bottom:0;left:0;width:78%;max-width:320px;background:#fff;z-index:30;transform:translateX(-105%);transition:.3s;overflow:auto}
-.drawer.on{transform:none}.dh{padding:20px 16px;color:#fff;background:linear-gradient(135deg,#0f9d8a,#1aa0a0)}
-.dh img{width:56px;height:56px;border-radius:50%;background:#fff;display:block;margin-bottom:8px}
-.di{display:flex;gap:18px;padding:14px 18px;cursor:pointer;color:#333}.di svg{color:#666}.sec{padding:12px 18px;color:var(--mu);font-size:13px}
-.bar{height:5px;background:#ddd;border-radius:4px;overflow:hidden}.bar i{display:block;height:100%;background:var(--r);width:0;transition:width .5s}
-.fab{position:fixed;right:20px;bottom:84px;width:56px;height:56px;border-radius:50%;background:var(--r);color:#fff;border:0;box-shadow:0 4px 12px #0004;cursor:pointer}
-.tl{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--ln)}
-.sp{width:28px;height:28px;border:4px solid #fcc;border-top-color:var(--r);border-radius:50%;animation:s 1s linear infinite;display:inline-block}@keyframes s{to{transform:rotate(360deg)}}
-.big{font-size:38px;font-weight:700;color:#666}.green{color:#2a9d3a;font-size:13px}
-#toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:20px;z-index:50;display:none;font-size:14px}
-</style></head><body>
-<div id="app"></div><div id="toast"></div>
+*{box-sizing:border-box;margin:0}body{font-family:system-ui,sans-serif;background:#f6f6f8;color:#222;padding-bottom:40px}
+header{background:linear-gradient(120deg,#ff5a4f,#c2307f);color:#fff;padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
+.tabs{display:flex;gap:6px;padding:10px;overflow:auto}.tabs button{border:0;padding:10px 16px;border-radius:20px;background:#fff;cursor:pointer;white-space:nowrap}.tabs .on{background:#f2453d;color:#fff}
+.card{background:#fff;border-radius:12px;padding:14px;margin:10px;box-shadow:0 1px 6px #0002}
+.btn{border:0;border-radius:8px;padding:9px 13px;background:#f2453d;color:#fff;cursor:pointer;font-weight:600;margin:2px}.btn.g{background:#ddd;color:#222}.btn.k{background:#2a9d3a}
+input,select,textarea{padding:10px;border:1px solid #ddd;border-radius:8px;font:inherit;width:100%;margin:5px 0}
+.r{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;align-items:center}.mu{color:#777;font-size:13px}
+.ov{position:fixed;inset:0;background:#0007;display:grid;place-items:center;z-index:9}.md{background:#fff;border-radius:16px;padding:20px;width:min(94%,400px);max-height:90vh;overflow:auto}
+#t{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:20px;display:none;z-index:99}
+</style></head><body><div id="app"></div><div id="t"></div>
 <script type="module">
 import {initializeApp} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-import {getAuth,onAuthStateChanged,signInWithEmailAndPassword,createUserWithEmailAndPassword,signOut,GoogleAuthProvider,signInWithPopup,updateProfile,sendPasswordResetEmail} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-import {getFirestore,doc,getDoc,setDoc,updateDoc,onSnapshot,increment,collection,addDoc,getDocs,query,where,limit,serverTimestamp,deleteDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getAuth,onAuthStateChanged,signInWithRedirect,getRedirectResult,GoogleAuthProvider,signOut,sendPasswordResetEmail,signInWithEmailAndPassword,createUserWithEmailAndPassword,sendEmailVerification} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+import {getFirestore,doc,updateDoc,addDoc,increment,collection,getDocs,deleteDoc} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
+import {getFunctions,httpsCallable} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-functions.js";
 const fb=initializeApp({apiKey:"AIzaSyADFLvww4vFLbYpE5I6AYcKQwQELJLB2pg",authDomain:"unlimitedpower-a6c9e.firebaseapp.com",projectId:"unlimitedpower-a6c9e",storageBucket:"unlimitedpower-a6c9e.firebasestorage.app",messagingSenderId:"229075222841",appId:"1:229075222841:web:1a22d8c1ce0cbecb7f28e8"});
-const auth=getAuth(fb),db=getFirestore(fb);
-const PK="pk_live_4ff37d15381d1d12c78fd66f7bc86beb64c59415",SITE="https://1234567890.com",MAIL="aladdincharlotte@gmail.com";
-const I={menu:'<path d="M3 6h18M3 12h18M3 18h18"/>',bell:'<path d="M6 8a6 6 0 0112 0c0 7 3 9 3 9H3s3-2 3-9M10 21h4"/>',coin:'<circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1 1-1.5 2.5-1.5s2.5.6 2.5 1.7-1 1.5-2.5 1.8-2.5.7-2.5 1.8 1 1.7 2.5 1.7 2.5-.5 2.5-1.5"/>',play:'<path d="M7 4l13 8-13 8z"/>',sub:'<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M6 4h12M9 12l5 3-5 3z"/>',like:'<path d="M7 11v9H3v-9zM7 11l4-8c2 0 3 1 3 3v3h6l-2 9H7"/>',camp:'<path d="M3 11v3l12 5V6zM15 9a3 3 0 010 6M6 14l1 6h3l-1-5"/>',x:'<path d="M6 6l12 12M18 6L6 18"/>',cart:'<circle cx="9" cy="20" r="1.5"/><circle cx="18" cy="20" r="1.5"/><path d="M2 3h3l3 12h10l2-8H6"/>',vip:'<path d="M3 8l4 4 5-8 5 8 4-4-2 11H5z"/>',ads:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M10 9l5 3-5 3z"/>',share:'<circle cx="6" cy="12" r="2.5"/><circle cx="18" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8 11l8-4M8 13l8 4"/>',info:'<circle cx="12" cy="12" r="9"/><path d="M12 11v6M12 7.5v.5"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/>',shield:'<path d="M12 3l8 3v6c0 5-4 8-8 9-4-1-8-4-8-9V6z"/>',out:'<path d="M9 4H5v16h4M16 8l4 4-4 4M20 12H9"/>',back:'<path d="M15 5l-7 7 7 7"/>',plus:'<path d="M12 5v14M5 12h14"/>'};
-const ic=n=>`<svg viewBox="0 0 24 24">${I[n]}</svg>`;
-const $=s=>document.querySelector(s),fmt=n=>Number(n||0).toLocaleString(),L=JSON.parse;
-const S={tab:'view',page:null,me:null,q:[],cur:null,t0:0,auto:false,bell:0};
-const toast=m=>{const t=$('#toast');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',2600)};
-window.addEventListener('unhandledrejection',e=>toast(String(e.reason?.message||'Error').replace('Firebase: ','').slice(0,140)));const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));const modal=h=>{close();const d=document.createElement('div');d.className='ov';d.id='ov';d.innerHTML=`<div class="md">${h}</div>`;d.onclick=e=>{if(e.target==d)close()};document.body.append(d)};
-const close=()=>$('#ov')?.remove();window.close2=close;
-/* PWA + overlay */
-const icon="icon-192.png";let dip=null;
-const standalone=()=>matchMedia('(display-mode: standalone)').matches||navigator.standalone;
-const OV=()=>window.Capacitor?.isNativePlatform?.()?(OV.p||(OV.p=Capacitor.registerPlugin('Overlay'))):null;
-if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(()=>{});
-window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();dip=e;if(!localStorage.noinst&&!standalone())setTimeout(installAsk,2500)});
-window.addEventListener('appinstalled',()=>{dip=null;close();toast('Installed. Open it from your home screen.')});
-function installAsk(){if(standalone()||OV())return toast('App is already installed');
- modal(`<h3>Install UTbe SEO</h3><p>Install the app for the full experience. After installing, open it and allow <b>Display over other apps</b> when asked.</p><div class="row" style="margin:0"><button class="btn g" onclick="localStorage.noinst=1;close2()">Not now</button><button class="btn" id="ins">Install</button></div>`);
- $('#ins').onclick=async()=>{if(dip){dip.prompt();await dip.userChoice;dip=null;close()}else modal(`<h3>Install manually</h3><p>Android Chrome: tap the ⋮ menu, then <b>Install app</b> or <b>Add to Home screen</b>.<br>iPhone Safari: tap Share, then <b>Add to Home Screen</b>.</p><button class="btn" style="width:100%" onclick="close2()">OK</button>`)}}
-async function first(){const o=OV();if(!o)return;let g=true;try{g=(await o.hasPermission()).granted}catch(e){}
- if(g){if($('#ovb'))close();return}if($('#ovb'))return;
- modal(`<h3>Allow display over other apps</h3><p>UTbe SEO needs this permission so the countdown stays visible on top of YouTube. Tap <b>Open settings</b>, find UTbe SEO, turn on <b>Allow display over other apps</b>, then come back.</p><button class="btn" id="ovb" style="width:100%">Open settings</button>`);
- $('#ovb').onclick=()=>o.requestPermission()}
-document.addEventListener('visibilitychange',()=>{if(document.visibilityState=='visible'&&S.me&&OV())first()});
-/* pricing */
-const rw=s=>Math.max(50,Math.round(50+(s-45)*800/655));
-function cost(type,q,s,vip){const f=(q-10)/990,fs=(s-45)/655;const v=q*Math.max(s,60+10*f);
- const lk=q*((20-10*f)+((350-250*f)-(20-10*f))*fs);
- let t=type=='view'?v:type=='sub'?v+lk:(v+lk)/2;return Math.round(vip?t*.9:t)}
-const vipOn=()=>S.me&&S.me.vipUntil>Date.now();
+const auth=getAuth(fb),db=getFirestore(fb),fn=getFunctions(fb),ADMIN="aladdincharlotte@gmail.com";
+const $=s=>document.querySelector(s),fmt=n=>Number(n||0).toLocaleString();
+const esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const toast=m=>{const t=$('#t');t.textContent=m;t.style.display='block';setTimeout(()=>t.style.display='none',3500)};
+window.addEventListener('unhandledrejection',e=>toast(String(e.reason?.message||'Error').replace('Firebase: ','').slice(0,160)));
+let tab='pay',D={pay:[],usr:[],vid:[],cl:[],bc:[]},qs='';
+const rows=async c=>(await getDocs(collection(db,c))).docs.map(d=>({id:d.id,...d.data()}));
+const modal=h=>{$('#ov')?.remove();const d=document.createElement('div');d.className='ov';d.id='ov';d.innerHTML=`<div class="md">${h}</div>`;d.onclick=e=>{if(e.target==d)d.remove()};document.body.append(d)};
+const cl=()=>$('#ov')?.remove();
 const vid=u=>(String(u).match(/(?:v=|youtu\.be\/|shorts\/|embed\/|live\/)([\w-]{11})/)||[])[1];
-/* auth */
-function login(){const em=localStorage.getItem('em')||'';
- $('#app').innerHTML=`<header><h1>UTbe SEO</h1></header><div class="card" style="margin-top:30px"><h3 class="c" style="margin-bottom:8px">Welcome</h3>
- <input id="n" placeholder="Full name (new account only)"><input id="e" type="email" placeholder="Gmail" value="${em}"><input id="p" type="password" placeholder="Password (min 6)"><input id="rc" placeholder="Referral code (optional)">
- <div class="row" style="margin:8px 0"><button class="btn" id="si">Sign in</button><button class="btn g" id="su">Create account</button></div>
- <button class="btn g" id="go" style="width:100%">Continue with Google</button><p class="c" style="margin-top:10px"><button class="ib" id="fp" style="color:var(--r)">Forgot password?</button></p><p class="mu c" id="er" style="margin-top:6px;color:#c33"></p></div>`;
- const er=m=>$('#er').textContent=m.replace('Firebase: ','');
- $('#si').onclick=()=>{localStorage.setItem('em',$('#e').value);signInWithEmailAndPassword(auth,$('#e').value,$('#p').value).catch(x=>er(x.message))};
- $('#su').onclick=async()=>{localStorage.setItem('em',$('#e').value);window._rc=$('#rc').value.trim().toUpperCase();try{const c=await createUserWithEmailAndPassword(auth,$('#e').value,$('#p').value);await updateProfile(c.user,{displayName:$('#n').value||$('#e').value.split('@')[0]})}catch(x){er(x.message)}};
- if(OV())$('#go').style.display='none';
- $('#go').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(x=>er(x.message));
- $('#fp').onclick=()=>{const e=$('#e').value.trim();if(!e)return er('Enter your email first');sendPasswordResetEmail(auth,e).then(()=>er('Reset email sent. Check your inbox and spam folder.')).catch(x=>er(x.message))};}
-let unsub;
-onAuthStateChanged(auth,async u=>{unsub&&unsub();if(!u){S.me=null;return login()}
- const r=doc(db,'users',u.uid);if(!(await getDoc(r)).exists()){const nm=u.displayName||u.email.split('@')[0];
-  await setDoc(r,{name:nm,email:u.email,photo:u.photoURL||'',coins:0,ref:u.email.split('@')[0].slice(0,5).toUpperCase(),refUsed:false,banned:false,created:Date.now()});
-  await setDoc(doc(db,'refs',u.email.split('@')[0].slice(0,5).toUpperCase()),{uid:u.uid}).catch(()=>{});if(window._rc)redeem(window._rc,true)}
- unsub=onSnapshot(r,s=>{S.me={id:u.uid,...s.data()};if(S.me.banned){alert('Account suspended.');signOut(auth);return}S.page?bal():draw();if(!S.init){S.init=1;reload();chkBell()}});
- try{first()}catch(e){}});
-/* promo */
-function promoEnd(){let e=+localStorage.pe;if(!e||e<Date.now()){e=Date.now()+((24+13)*3600+27*60+23)*1e3;localStorage.pe=e}return e}
-function promo(){if(+localStorage.ph>Date.now())return'';return`<div class="card c" data-a="promo"><b class="mu" style="font-size:18px">Special promotion</b><div style="display:flex;justify-content:space-between;margin-top:6px"><span class="mu">150,000 Coins <span class="old">75,000</span></span><b class="mu">₦13,000</b></div><div class="mu" style="font-size:22px;margin-top:6px">End in <span id="cd"></span></div><button class="ib x" data-a="px">${ic('x')}</button></div>`}
-setInterval(()=>{const c=$('#cd');if(c){let d=Math.max(0,promoEnd()-Date.now())/1e3|0;c.textContent=`${d/86400|0}:${String(d/3600%24|0).padStart(2,'0')}:${String(d/60%60|0).padStart(2,'0')}:${String(d%60).padStart(2,'0')}`}
- if(+localStorage.ph&&+localStorage.ph<=Date.now()){localStorage.ph=0;draw()}},1000);
-/* drawing */
-function draw(){if(!S.me)return;const m=S.me;
- const head=S.page?`<header><button class="ib" data-a="home">${ic('back')}</button><h1>${S.page.t}</h1><b data-a="store"><span class="cb">${fmt(m.coins)}</span> ${ic('coin')}</b></header>`:
- `<header><button class="ib" data-a="menu">${ic('menu')}</button><h1>UTbe SEO</h1><button class="ib" data-a="bell" style="position:relative">${ic('bell')}${S.bell?'<i style="position:absolute;top:0;right:0;width:10px;height:10px;border-radius:50%;background:#ffe14d"></i>':''}</button><b data-a="store"><span class="cb">${fmt(m.coins)}</span> ${ic('coin')}</b></header>`;
- const body=S.page?S.page.h():tabHTML();
- const nav=S.page?'':`<nav>${[['view','play','View'],['sub','sub','Subscribe'],['like','like','Like'],['camp','camp','Campaign']].map(t=>`<button class="${S.tab==t[0]?'on':''}" data-a="tab" data-v="${t[0]}">${ic(t[1])}${t[2]}</button>`).join('')}</nav>`;
- $('#app').innerHTML=head+body+nav+drawer();}
-const drawer=()=>`<div class="drawer" id="dr"><div class="dh"><img src="${S.me.photo||icon}"><b>${S.me.name}</b><div style="font-size:13px">${S.me.email}</div></div>
-${[['store','cart','Buy coin'],['vip','vip','VIP account'],['ads','ads','Watch ads video'],['inv','share','Invite friend']].map(x=>`<div class="di" data-a="${x[0]}">${ic(x[1])}${x[2]}</div>`).join('')}<hr style="border:0;border-top:1px solid #eee"><div class="sec">More</div>
-${[['inst','plus','Install app'],['about','info','About'],['contact','mail','Contact us'],['priv','shield','Privacy policy'],['out','out','Log out']].map(x=>`<div class="di" data-a="${x[0]}">${ic(x[1])}${x[2]}</div>`).join('')}</div>`;
-function tabHTML(){if(S.tab=='camp')return campHTML();const c=S.cur,t=S.tab;
- if(!c)return promo()+`<div class="c" style="margin-top:80px"><div style="font-size:50px;color:#aaa">${ic('play')}</div><h2 class="mu">No video</h2><p class="mu">No video to watch now. Click reload or earn coins.</p><div style="margin-top:12px"><button class="btn" data-a="reload">Reload</button></div><div style="margin-top:10px"><button class="btn" data-a="ads">Watch ads video</button></div></div>`;
- const s=c.sec||45,r=c.reward||(t=='view'?rw(s):t=='sub'?150:100);
- return promo()+`<div class="card"><div class="screen"><img src="https://img.youtube.com/vi/${c.vid}/hqdefault.jpg" alt="">${t=='view'?`<button class="pl" data-a="play">${ic('play')}</button>`:''}</div></div>
- ${t=='view'?`<div class="card"><label style="display:flex;justify-content:flex-end;gap:8px"><span>Auto play</span><input type="checkbox" style="width:auto;margin:0" ${S.auto?'checked':''} data-a="auto"></label><div style="display:flex;text-align:center;margin-top:8px"><div class="big" style="flex:1">${r}<small style="font-size:16px"> coins</small></div><div style="width:2px;background:var(--r)"></div><div class="big" style="flex:1" id="sc">${s}<small style="font-size:16px"> s</small></div></div><div class="bar" style="margin-top:8px"><i id="pb"></i></div></div>`
- :`<div class="card mu">${t=='sub'?'Tap the button to open the video on YouTube. Subscribe and like it, then return here. Use the same Google account in YouTube.':'Tap Like to open the video on YouTube. Like it and return here. Do not unlike any video or your account will be blocked.'}</div>`}
- <div class="row">${t!='view'?`<button class="btn" data-a="play">${t=='sub'?'Subscribe':'Like'}</button>`:''}<button class="btn" data-a="other">See other</button></div>`}
-let camps=[];
-function campHTML(){return promo()+(camps.length?camps.map(c=>{const p=Math.min(100,Math.round((c.done||0)/c.qty*100));return`<div class="card" data-a="cm" data-v="${c.id}"><div style="display:flex;gap:10px"><img src="https://img.youtube.com/vi/${c.vid}/default.jpg" style="width:90px;border-radius:8px"><div style="flex:1"><b>${c.type.toUpperCase()}</b> · ${c.done||0}/${c.qty}<div class="bar" style="margin:8px 0"><i style="width:${p}%"></i></div><span class="mu" style="font-size:13px">${fmt(c.coins)} coins · ${p}%</span></div></div></div>`}).join(''):`<div class="c mu" style="margin-top:90px"><h2>No campaign</h2><p>Your campaigns appear here. Tap + to create one.</p></div>`)+`<button class="fab" data-a="add">${ic('plus')}</button>`}
-async function loadCamps(){const s=await getDocs(query(collection(db,'videos'),where('owner','==',S.me.id)));camps=s.docs.map(d=>({id:d.id,...d.data()}));draw()}
-const bal=()=>document.querySelectorAll('.cb').forEach(e=>e.textContent=fmt(S.me.coins));
-async function chkBell(){try{const s=await getDocs(collection(db,'broadcasts'));S.bell=s.docs.some(d=>d.data().t>(+localStorage.bs||0));if(!S.page)draw()}catch(e){}}
-async function reload(reset){const t=S.tab;if(t=='camp')return loadCamps();
- if(reset)localStorage['s'+t]='[]';toast('Loading…');
- const s=await getDocs(query(collection(db,'videos'),where('status','==','active'),limit(60)));
- const seen=L(localStorage['s'+t]||'[]');S.q=s.docs.map(d=>({id:d.id,...d.data()})).filter(v=>v.owner!=S.me.id&&!seen.includes(v.id)&&(t=='view'?['view','watch','sub'].includes(v.type):t=='sub'?v.type=='sub':['like','sub'].includes(v.type)));
- next();if(!S.cur)toast('No videos available right now')}
-function next(){S.cur=S.q.shift()||null;draw()}
-/* watching */
-const wl=t=>{const w=L(localStorage['w'+t]||'{"n":0,"u":0}');return w};
-async function credit(c,r){const t=S.tab,seen=L(localStorage['s'+t]||'[]');seen.push(c.id);localStorage['s'+t]=JSON.stringify(seen);
- await updateDoc(doc(db,'users',S.me.id),{coins:increment(r)});await updateDoc(doc(db,'videos',c.id),{done:increment(1)}).catch(()=>{});
- if(t!='view')await addDoc(collection(db,'claims'),{uid:S.me.id,vid:c.id,type:t,t:Date.now()});
- const w=wl(t);w.n++;if(w.n>=30){w.n=0;w.u=Date.now()+6e5}localStorage['w'+t]=JSON.stringify(w);toast(`+${r} coins`)}
-function play(){const c=S.cur;if(!c)return;const w=wl(S.tab);if(w.u>Date.now())return toast('Limit reached. Wait '+Math.ceil((w.u-Date.now())/6e4)+' min or switch tab.');
- S.t0=Date.now();S.busy=true;const o=OV();if(o){const t=S.tab;o.show({seconds:c.sec||45,coins:c.reward||(t=='view'?rw(c.sec||45):t=='sub'?150:100)}).catch(()=>{});o.openUrl({url:c.url}).catch(()=>window.open(c.url,'_blank'))}else window.open(c.url,'_blank')}
-document.addEventListener('visibilitychange',async()=>{if(document.visibilityState!='visible'||!S.busy||!S.cur)return;S.busy=false;try{OV()?.hide()}catch(e){}
- const c=S.cur,t=S.tab,need=t=='view'?(c.sec||45):45,el=(Date.now()-S.t0)/1e3,r=c.reward||(t=='view'?rw(c.sec||45):t=='sub'?150:100);
- if(t=='view'){if(el>=need){await credit(c,r);setTimeout(()=>{next();if(S.auto)play()},1000)}else toast(`Watch ${Math.ceil(need-el)}s more`)}
- else{modal(`<h3>Checking…</h3><div class="c"><span class="sp"></span><p style="margin-top:12px">Please wait while we check your ${t=='sub'?'subscription':'like'}</p></div>`);
-  setTimeout(()=>{if(el<8){modal(`<h3>Not detected</h3><p>Go back to YouTube and ${t=='sub'?'subscribe and like':'like'} the video, then return.</p><button class="btn" style="width:100%" onclick="close2()">OK</button>`)}else{close();modal(`<h3>Did you ${t=='sub'?'subscribe and like':'like'} the video?</h3><p>Claims are audited by admin; false claims lead to a ban.</p><div class="row" style="margin:0"><button class="btn g" onclick="close2()">No</button><button class="btn" id="yes">Yes</button></div>`);$('#yes').onclick=async()=>{close();await credit(c,r);next()}}},5000)}});
-/* payments */
-function pay(amount,meta,label){if(!window.PaystackPop)return toast('Payment script not loaded');const ref='UT'+Date.now();
- PaystackPop.setup({key:PK,email:S.me.email,amount:amount*100,currency:'NGN',ref,callback:r=>{addDoc(collection(db,'payments'),{uid:S.me.id,email:S.me.email,name:S.me.name,amount,ref:r.reference,status:'pending',t:Date.now(),...meta});modal(`<h3>Payment received</h3><p>Please hold on. Your ${label} is pending admin confirmation and will appear once approved.</p><button class="btn" style="width:100%" onclick="close2()">OK</button>`)},onClose(){}}).openIframe()}
-const PK_=[[5000,1500],[35000,6000],[75000,13000],[500000,70000],[1400000,150000],[2000000,200000]];
-const pages={
- store:()=>({t:'Buy coin',h:()=>PK_.map(p=>`<div class="card tl" style="border:0" data-a="buy" data-v="${p}"><span class="mu" style="font-size:18px">${fmt(p[0])} Coins</span><b class="mu">₦${fmt(p[1])}</b></div>`).join('')+`<div class="card mu" style="font-size:14px">Issues with a purchase? Contact us at <a href="mailto:${MAIL}">${MAIL}</a></div>`}),
-};
-const go=(t,h)=>{S.page={t,h};draw()};
-const POL=`<p><b>Information we collect.</b> Your name, email, profile photo, coin balance, campaign data and payment references.</p><p><b>How we use it.</b> To run your account, credit coins, process campaigns, prevent fraud and support you. We do not sell your data.</p><p><b>Payments.</b> Handled by Paystack; we never see your card details.</p><p><b>Third parties.</b> Firebase (storage and sign-in), Paystack (payments), Google AdSense (ads, which may use cookies).</p><p><b>Your rights.</b> Email ${MAIL} to access or delete your data.</p><p><b>Changes.</b> Updates will be posted in the app.</p>`;
-const ABOUT=`<p>© 2026 UTbe SEO</p><p>YouTube has lifted countless people out of poverty, and we are here to help your video rank higher. UTbe SEO is a community of creators: watch other creators' videos, earn coins, then spend them to promote your own.</p><p>It is free to start. Real people like you watch, like and subscribe, helping you work toward YouTube's watch-hour requirements.</p><p>Join thousands of creators growing together. Earn, promote, repeat.</p>`;
-const MSG=`UTbe SEO is a platform where you can make your video rank top 10 in the YouTube algorithm. Other users watch your video and you watch theirs, earning coins to keep promoting your own videos. YouTube has changed people's financial lives and over 40,000,000 users are ready to watch your video. Click the link to join: ${SITE}`;
-async function redeem(code,quiet){const m=S.me||{};code=code.trim().toUpperCase();if(!quiet&&m.refUsed)return toast('Already redeemed');
- const s=await getDoc(doc(db,'refs',code));if(!s.exists())return quiet||toast('Invalid code');const oid=s.data().uid;
- if(oid==auth.currentUser.uid)return quiet||toast('You cannot use your own code');
- await updateDoc(doc(db,'users',oid),{coins:increment(500)});await updateDoc(doc(db,'users',auth.currentUser.uid),{refUsed:true});toast('Referral redeemed')}
-const VIP=[['Monthly',1500,1],['3 months',3500,3],['6 months',7000,6],['1 year',10000,12]];
-/* campaign creation */
-const SECS=[45,60,90,120,150,180,210,240,300,360,420,480,540,600,650,700];
-function chooser(){modal(`<h3>Choose a goal for your campaign</h3>${[['sub','sub','Subscribers, likes and views for your channel'],['view','play','Views for your video'],['like','like','Likes for your video'],['prem','camp','Premium campaign for VIP']].map(x=>`<div class="opt" data-a="goal" data-v="${x[0]}">${ic(x[1])}<span>${x[2]}</span></div>`).join('')}<div style="text-align:right"><button class="ib" style="color:var(--r);font-weight:700" onclick="close2()">CANCEL</button></div>`)}
-function linkAsk(type){modal(`<h3>Enter video link</h3><div style="display:flex;gap:8px"><input id="lk" placeholder="https://youtu.be/…"><button class="btn" id="ad">Add</button></div><p class="mu" style="font-size:13px">How to get your link: open your video on YouTube, tap Share, then Copy link.</p>`);
- $('#ad').onclick=()=>{const v=vid($('#lk').value.trim());if(!v)return toast('Invalid link. Use Share > Copy link on YouTube');const u='https://www.youtube.com/watch?v='+v;close();type=='prem'?premPage(u,v):settings(type,u,v)}}
-const WARN=`<div class="mu" style="font-size:13px;padding:12px"><b>Warning ⚠️</b><br>• Do not create too many campaigns for one video; YouTube will not count many views from one IP in a short time.<br>• Video length must be at least 45 seconds.<br>• YouTube needs 72 hours to update views from third-party apps. Use YouTube Studio to check in real time.</div>`;
-function settings(type,u,v){let q=50,s=60;const q2=[10,...Array.from({length:19},(_,i)=>(i+1)*50+0)].filter((x,i,a)=>x>=10&&x<=1000).map(x=>x);
- const qs=[10,50,100,150,200,250,300,350,400,450,500,550,600,650,700,750,800,850,900,950,1000];
- const lab=type=='sub'?'Expected subscribers':type=='like'?'Expected likes':'Expected views';
- go('Create campaign',()=>`<div style="background:#000;text-align:center"><img src="https://img.youtube.com/vi/${v}/hqdefault.jpg" style="max-width:100%;max-height:220px"></div>
- <div class="card"><b>Premium campaign</b><p class="mu" style="font-size:14px">Priority processing · faster & more effective delivery</p><p style="color:var(--r);font-size:14px">Recommended for creators who want quicker results</p><button class="btn g" data-a="prempg" data-u="${u}" data-v="${v}">Create premium campaign</button></div>
- <div style="padding:0 16px"><h3 class="mu" style="border-bottom:1px solid #aaa;padding-bottom:4px">CAMPAIGN SETTINGS</h3>
- <div class="tl" style="border:0"><span>${lab}</span><select id="q" style="width:110px">${qs.map(x=>`<option ${x==q?'selected':''}>${x}</option>`).join('')}</select></div>
- ${type=='sub'?'<div class="mu" style="font-size:13px">Likes match subscribers automatically.</div>':''}
- <div class="tl" style="border:0"><span>Time required (sec)</span><input id="s" type="number" min="45" value="${s}" style="width:110px"></div>
- <div class="tl"><span>VIP account (reduce 10%)</span>${vipOn()?'<b style="color:#2a9d3a">Active</b>':'<button class="btn g" data-a="vip">Upgrade</button>'}</div>
- <div class="tl" style="border:0"><span>Total coin</span><b id="tc" style="background:#eee;padding:10px 20px;border-radius:6px">0</b></div>
- <button class="btn g" id="dn" style="width:100%">Done</button></div>${WARN}`);
- const up=()=>{q=+$('#q').value;s=+$('#s').value||45;$('#tc').textContent=fmt(cost(type,q,s,vipOn()))};
- $('#q').onchange=up;$('#s').oninput=up;up();
- $('#dn').onclick=async()=>{s=Math.max(45,+$('#s').value||45);if(s>700)return modal(`<h3>Over 700 seconds</h3><p>Longer watch times are available in the Premium campaign.</p><button class="btn" style="width:100%" onclick="close2()">OK</button>`);
-  const c=cost(type,q,s,vipOn());if(S.me.coins<c)return modal(`<h3>Not enough coins</h3><p>You need ${fmt(c)} coins. Buy more to continue.</p><button class="btn" style="width:100%" data-a="store">Buy coin</button>`);
-  await updateDoc(doc(db,'users',S.me.id),{coins:increment(-c)});await addDoc(collection(db,'videos'),{owner:S.me.id,url:u,vid:v,type,qty:q,sec:s,coins:c,done:0,status:'active',t:Date.now()});toast('Campaign created');S.page=null;S.tab='camp';loadCamps()}}
-function premPage(u,v){const T={view:50,like:50,sub:150,comment:300,watch:0};
- const LEN=[['shorter than 15 minutes',300],['between 15 and 30 minutes',600],['between 30 and 60 minutes',1200],['longer than 60 minutes',2400]];
- go('Premium campaign',()=>`<div style="background:#000;text-align:center"><img src="https://img.youtube.com/vi/${v}/hqdefault.jpg" style="max-height:220px;max-width:100%"></div><div style="padding:16px"><h3 class="mu">CAMPAIGN SETTINGS</h3>
- <div class="tl" style="border:0"><span>Target</span><select id="tg" style="width:160px"><option value="view">View</option><option value="like">Like</option><option value="watch">Watch time</option><option value="comment">Comment</option><option value="sub">Subscribers</option></select></div>
- <div class="tl" style="border:0" id="qr"><span>Quantity</span><input id="pq" type="number" inputmode="numeric" min="1" value="100" style="width:120px"></div>
- <div id="ex"></div><div class="tl" style="border:0;color:var(--r)"><span>TOTAL COIN</span><b id="tc">0</b></div><button class="btn g" id="dn" style="width:100%">Done</button></div>${WARN}`);
- const cms=()=>($('#cm')?.value||'').split('\n').map(x=>x.trim()).filter(Boolean);
- const tot=()=>{const tg=$('#tg').value,q=+$('#pq').value||0;let t=0;
-  if(tg=='watch'){const r=document.querySelector('[name=ln]:checked');t=r?q*LEN[r.value][1]:0}else if(tg=='comment')t=cms().length*300;else t=q*T[tg];
-  $('#tc').textContent=fmt(t);return t};
- const ex=()=>{const tg=$('#tg').value;$('#qr').style.display=tg=='comment'?'none':'flex';
-  $('#ex').innerHTML=tg=='watch'?`<b style="font-size:14px">Confirm your exact video length. Incorrect info may cancel your campaign.</b>${LEN.map((l,i)=>`<label class="opt"><input type="radio" name="ln" value="${i}" style="width:22px;height:22px;padding:0;margin:0"><span>My video is ${l[0]}</span></label>`).join('')}`:tg=='comment'?`<textarea id="cm" rows="5" placeholder="Type one comment per line (300 coins each)"></textarea>`:'';tot()};
- $('#tg').onchange=ex;$('#pq').oninput=tot;$('#ex').oninput=tot;$('#ex').onchange=tot;ex();
- $('#dn').onclick=async()=>{const t=tot(),tg=$('#tg').value;if(!t)return toast(tg=='watch'?'Choose your video length and quantity':'Complete the settings');if(S.me.coins<t)return toast('Not enough coins');
-  const d={owner:S.me.id,url:u,vid:v,type:tg,qty:tg=='comment'?cms().length:+$('#pq').value,coins:t,done:0,premium:true,status:tg=='comment'?'review':'active',sec:tg=='watch'?600:60,t:Date.now()};
-  if(tg=='comment')d.comments=cms();await updateDoc(doc(db,'users',S.me.id),{coins:increment(-t)});await addDoc(collection(db,'videos'),d);toast(tg=='comment'?'Sent to admin':'Campaign created');S.page=null;S.tab='camp';loadCamps()}}
-/* events */
-document.addEventListener('click',async e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,v=el.dataset.v;
- const dr=$('#dr');if(a!='menu'&&dr)dr.classList.remove('on');
- switch(a){
- case'menu':dr.classList.add('on');setTimeout(()=>document.addEventListener('click',()=>$('#dr')?.classList.remove('on'),{once:true}),0);break;
- case'bell':{const q=await getDocs(collection(db,'broadcasts'));const b=q.docs.map(d=>({id:d.id,...d.data()})).sort((x,y)=>y.t-x.t);localStorage.bs=Date.now();S.bell=0;draw();
-  modal(`<h3>Notifications</h3>${b.map(m=>`<div class="tl" style="display:block"><b data-a="bm" data-v="${m.id}" style="cursor:pointer;display:block">${esc(m.title)}</b><div id="bm${m.id}" class="mu" style="display:none;margin-top:6px;white-space:pre-wrap">${esc(m.body)}</div></div>`).join('')||'<p>No announcements.</p>'}`);break}
- case'bm':{const d=$('#bm'+v);d.style.display=d.style.display=='none'?'block':'none';break}
- case'inst':installAsk();break;
- case'tab':S.tab=v;S.page=null;S.cur=null;reload();draw();break;
- case'home':S.page=null;S.tab='view';reload();break;
- case'store':close();S.page=pages.store();draw();break;
- case'buy':{const p=v.split(',');pay(+p[1],{kind:'coins',coins:+p[0]},fmt(p[0])+' coins');break}
- case'promo':pay(13000,{kind:'coins',coins:150000},'150,000 coins');break;
- case'px':e.stopPropagation();localStorage.ph=Date.now()+40*6e4;draw();break;
- case'vip':close();go('VIP account',()=>`<div class="card"><b>Why VIP?</b><p class="mu" style="font-size:14px">• Promote your videos 10% cheaper (save 60,000 on a 600,000-coin campaign)<br>• No ads<br>• Priority support</p></div>${VIP.map((x,i)=>`<div class="card tl" style="border:0" data-a="vipb" data-v="${i}"><b>${x[0]}</b><b style="color:var(--r)">₦${fmt(x[1])}</b></div>`).join('')}`);break;
- case'vipb':{const x=VIP[v];pay(x[1],{kind:'vip',months:x[2]},'VIP '+x[0]);break}
- case'ads':close();modal(`<h3>Watch ads video</h3><p>Watch the ad to earn <b>200 coins</b>.</p><div class="c" style="margin:10px 0"><ins class="adsbygoogle" style="display:block;min-height:100px" data-ad-client="ca-pub-3899764771871192" data-ad-slot="5050002840" data-ad-format="auto"></ins></div><div class="c mu" id="at">Watch for 15s…</div>`);
-  try{(adsbygoogle=window.adsbygoogle||[]).push({})}catch(_){}let n=15;const iv=setInterval(()=>{if(!$('#at'))return clearInterval(iv);n--;if(n<=0){clearInterval(iv);updateDoc(doc(db,'users',S.me.id),{coins:increment(200)});$('#at').innerHTML='<b style="color:#2a9d3a">+200 coins</b>'}else $('#at').textContent=`Watch for ${n}s…`},1000);break;
- case'inv':go('Invite friend',()=>`<div class="card"><p class="mu">Your referral code</p><div class="big" style="color:var(--r)">${S.me.ref}</div><p class="mu" style="font-size:13px">You earn 500 coins when a friend redeems it.</p><button class="btn" data-a="share">Share</button></div><div class="card"><b>Redeem a code</b><input id="rd" placeholder="Friend's code"><button class="btn" data-a="redeem">Redeem</button></div>`);break;
- case'share':{const t=MSG+'\nReferral code: '+S.me.ref;navigator.share?navigator.share({title:'UTbe SEO',text:t,url:SITE}).catch(()=>{}):(navigator.clipboard.writeText(t),toast('Copied to clipboard'));break}
- case'redeem':redeem($('#rd').value.trim());break;
- case'about':go('About',()=>`<div class="card">${ABOUT}</div>`);break;
- case'priv':go('Privacy policy',()=>`<div class="card">${POL}</div>`);break;
- case'contact':location.href=`mailto:${MAIL}?subject=UTbe SEO support`;break;
- case'out':signOut(auth);break;
- case'play':play();break;case'other':next();break;case'reload':reload(true);break;
- case'auto':S.auto=el.checked;break;
- case'add':chooser();break;
- case'goal':close();linkAsk(v);break;
- case'prempg':premPage(el.dataset.u,v);break;
- case'cm':{const c=camps.find(x=>x.id==v),p=Math.min(100,Math.round((c.done||0)/c.qty*100));modal(`<h3>${c.type.toUpperCase()} campaign</h3><p>Progress ${p}% (${c.done||0}/${c.qty})</p><div class="row" style="margin:0"><button class="btn g" data-a="del" data-v="${v}">Delete</button><button class="btn" onclick="close2()">${p>=100?'Keep':'Close'}</button></div><button class="btn" style="width:100%;margin-top:10px" data-a="again" data-v="${v}">Run again on same video</button>`);break}
- case'del':close();await deleteDoc(doc(db,'videos',v));loadCamps();break;
- case'again':{close();const c=camps.find(x=>x.id==v);c.premium?premPage(c.url,c.vid):settings(c.type,c.url,c.vid);break}}});
-window.addEventListener('load',()=>{const s=document.createElement('script');s.src='https://js.paystack.co/v1/inline.js';document.head.append(s)});
-const o=draw;
-setTimeout(()=>{if(S.me&&!S.q.length&&!S.cur)reload()},1500);
+let msg='';
+onAuthStateChanged(auth,async u=>{if(!u)return loginUI();
+ if(u.email!==ADMIN){msg='Not an admin account';return signOut(auth)}
+ if(!u.emailVerified){await sendEmailVerification(u).catch(()=>{});msg='Verification email sent to '+u.email+'. Open the link, then sign in again.';return signOut(auth)}
+ load()});
+getRedirectResult(auth).catch(e=>toast(e.message));
+function loginUI(m){m=m||msg;msg='';$('#app').innerHTML=`<header><b>UTbe SEO Admin</b></header><div class="card"><input id="e" type="email" placeholder="Admin email" value="${ADMIN}"><input id="p" type="password" placeholder="Password"><button class="btn" id="si">Sign in</button><button class="btn g" id="su">Create admin account</button><button class="btn g" id="fp">Forgot password</button><hr style="margin:12px 0;border:0;border-top:1px solid #eee"><button class="btn g" id="go">Google (redirect)</button><p style="color:#c33;margin-top:10px" id="er">${m}</p></div>`;
+ const er=t=>$('#er').textContent=String(t).replace('Firebase: ','');
+ $('#si').onclick=()=>signInWithEmailAndPassword(auth,$('#e').value.trim(),$('#p').value).catch(x=>er(x.message));
+ $('#su').onclick=()=>{if($('#e').value.trim()!==ADMIN)return er('Only the admin email can be created here');createUserWithEmailAndPassword(auth,ADMIN,$('#p').value).catch(x=>er(x.message))};
+ $('#fp').onclick=()=>sendPasswordResetEmail(auth,$('#e').value.trim()).then(()=>er('Reset email sent')).catch(x=>er(x.message));
+ $('#go').onclick=()=>signInWithRedirect(auth,new GoogleAuthProvider())}
+async function load(){[D.pay,D.usr,D.vid,D.cl,D.bc]=await Promise.all(['payments','users','videos','claims','broadcasts'].map(rows));draw()}
+function draw(){const T=[['pay','Payments'],['usr','Users'],['vid','Campaigns'],['add','Add video'],['bc','Broadcast'],['cl','Claims']];
+ $('#app').innerHTML=`<header><b>UTbe SEO Admin</b><button class="btn g" id="lo">Log out</button></header>
+ <div class="card r"><span>Users <b>${D.usr.length}</b></span><span>Pending <b>${D.pay.filter(p=>p.status=='pending').length}</b></span><span>Campaigns <b>${D.vid.length}</b></span><span>Revenue <b>₦${fmt(D.pay.filter(p=>p.status=='approved').reduce((a,p)=>a+p.amount,0))}</b></span></div>
+ <div class="tabs">${T.map(t=>`<button class="${tab==t[0]?'on':''}" data-t="${t[0]}">${t[1]}</button>`).join('')}</div>${view()}`;
+ $('#lo').onclick=()=>signOut(auth)}
+function view(){
+ if(tab=='pay')return[...D.pay].sort((a,b)=>b.t-a.t).map(p=>`<div class="card"><div class="r"><b>${esc(p.name)} · ${esc(p.email)}</b><b>₦${fmt(p.amount)}</b></div><div class="mu">${p.kind=='vip'?'VIP '+p.months+' mo':fmt(p.coins)+' coins'} · ref ${esc(p.ref)} · ${new Date(p.t).toLocaleString()}</div><div class="r"><span class="mu">${p.status}</span><span>${p.status=='pending'?`<button class="btn k" data-a="ap" data-id="${p.id}">Approve</button><button class="btn g" data-a="rj" data-id="${p.id}">Reject</button>`:''}</span></div></div>`).join('')||'<div class="card mu">No payments</div>';
+ if(tab=='usr')return`<div style="padding:0 10px"><input id="q" placeholder="Search users by name, email or code" value="${esc(qs)}"></div>`+D.usr.filter(u=>(u.email+u.name+u.ref).toLowerCase().includes(qs.toLowerCase())).map(u=>`<div class="card"><div class="r"><b>${esc(u.name)}${u.banned?' (banned)':''}</b><b>${fmt(u.coins)} coins</b></div><div class="mu">${esc(u.email)} · code ${esc(u.ref)}${u.vipUntil>Date.now()?' · VIP':''}</div><button class="btn" data-a="eu" data-id="${u.id}">Edit user</button></div>`).join('');
+ if(tab=='vid')return[...D.vid].sort((a,b)=>b.t-a.t).map(v=>`<div class="card"><div class="r"><b>${v.type.toUpperCase()}${v.premium?' ★':''} · ${v.status}</b><span>${v.done||0}/${v.qty}</span></div><div class="mu" style="word-break:break-all">${esc(v.url)}<br>Time ${v.sec||'-'}s · Reward ${v.reward||'default'}</div>${v.comments?`<div class="mu">${v.comments.map(esc).join(' | ')}</div>`:''}<div>${v.status=='review'?`<button class="btn k" data-a="va" data-id="${v.id}">Approve</button>`:''}<button class="btn g" data-a="ed" data-id="${v.id}">Edit time/reward/qty</button><button class="btn" data-a="dv" data-id="${v.id}">Delete</button></div></div>`).join('')||'<div class="card mu">None</div>';
+ if(tab=='add')return`<div class="card"><h3>Add video to the platform</h3><p class="mu">Use this to seed videos and test the View, Subscribe and Like tabs.</p><input id="vu" placeholder="YouTube link"><select id="vt"><option value="view">View</option><option value="watch">Watch time</option><option value="sub">Subscribe + Like</option><option value="like">Like</option></select><input id="vq" type="number" placeholder="Quantity" value="100"><input id="vs" type="number" placeholder="Watch seconds" value="45"><input id="vr" type="number" placeholder="Reward coins (blank = default)"><button class="btn" data-a="av">Add video</button></div>`;
+ if(tab=='bc')return`<div class="card"><h3>Send broadcast</h3><input id="bt" placeholder="Title"><textarea id="bb" rows="5" placeholder="Message body"></textarea><button class="btn" data-a="sb">Send to all users</button></div>`+[...D.bc].sort((a,b)=>b.t-a.t).map(b=>`<div class="card"><div class="r"><b>${esc(b.title)}</b><button class="btn g" data-a="db" data-id="${b.id}">Delete</button></div><div class="mu" style="white-space:pre-wrap">${esc(b.body)}</div><div class="mu">${new Date(b.t).toLocaleString()}</div></div>`).join('');
+ return[...D.cl].sort((a,b)=>b.t-a.t).slice(0,100).map(c=>`<div class="card r"><span>${c.type} · ${c.uid.slice(0,8)}…</span><span class="mu">${new Date(c.t).toLocaleString()}</span></div>`).join('')||'<div class="card mu">None</div>'}
+const by=(c,id)=>D[c].find(x=>x.id==id);
+document.addEventListener('input',e=>{if(e.target.id=='q'){qs=e.target.value;const p=e.target.selectionStart;draw();const q=$('#q');q.focus();q.setSelectionRange(p,p)}});
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-t]');if(t){tab=t.dataset.t;return draw()}
+ const b=e.target.closest('[data-a]');if(!b)return;const a=b.dataset.a,id=b.dataset.id;
+ if(a=='ap'){const p=by('pay',id);if(p.status!='pending')return;
+  if(p.kind=='vip'){const u=by('usr',p.uid);await updateDoc(doc(db,'users',p.uid),{vipUntil:Math.max(Date.now(),u?.vipUntil||0)+p.months*30*864e5})}else await updateDoc(doc(db,'users',p.uid),{coins:increment(p.coins)});
+  await updateDoc(doc(db,'payments',id),{status:'approved'});toast('Approved');load()}
+ if(a=='rj'){await updateDoc(doc(db,'payments',id),{status:'rejected'});load()}
+ if(a=='eu'){const u=by('usr',id);modal(`<h3>Edit user</h3><label class="mu">Name</label><input id="en" value="${esc(u.name)}"><label class="mu">Coin balance (exact)</label><input id="ec" type="number" value="${u.coins||0}"><label class="mu">Add VIP days</label><input id="ev" type="number" placeholder="0"><label class="mu">Email (login)</label><input id="ee" type="email" value="${esc(u.email)}"><label class="mu">New password (min 6, leave blank to keep)</label><input id="ep" type="text" autocomplete="off"><label style="display:flex;gap:8px;align-items:center"><input id="eb" type="checkbox" style="width:auto;margin:0" ${u.banned?'checked':''}> Banned</label>
+  <div style="margin-top:10px"><button class="btn k" id="sv">Save</button><button class="btn g" id="rs">Send reset email</button><button class="btn" id="dl">Delete</button></div><p class="mu">Password and email changes need the Cloud Function deployed. Reset email works without it.</p>`);
+  $('#sv').onclick=async()=>{const d={name:$('#en').value.trim(),coins:Math.max(0,+$('#ec').value||0),banned:$('#eb').checked},dv=+$('#ev').value;
+   if(dv>0)d.vipUntil=Math.max(Date.now(),u.vipUntil||0)+dv*864e5;
+   const pw=$('#ep').value.trim(),em=$('#ee').value.trim();
+   if(pw||em!==u.email){await httpsCallable(fn,'adminUpdateUser')({uid:id,password:pw||undefined,email:em!==u.email?em:undefined});if(em!==u.email)d.email=em}
+   await updateDoc(doc(db,'users',id),d);cl();toast('Saved');load()};
+  $('#rs').onclick=async()=>{await sendPasswordResetEmail(auth,u.email);toast('Reset email sent to '+u.email)};
+  $('#dl').onclick=async()=>{if(confirm('Delete this user record? Their login remains in Firebase Auth.')){await deleteDoc(doc(db,'users',id));cl();load()}}}
+ if(a=='va'){await updateDoc(doc(db,'videos',id),{status:'active'});load()}
+ if(a=='dv'&&confirm('Delete campaign?')){await deleteDoc(doc(db,'videos',id));load()}
+ if(a=='ed'){const v=by('vid',id);modal(`<h3>Edit campaign</h3><label class="mu">Watch seconds (can exceed 700)</label><input id="s" type="number" value="${v.sec||45}"><label class="mu">Reward coins (custom)</label><input id="rw" type="number" value="${v.reward||''}"><label class="mu">Quantity (add bonus views)</label><input id="qy" type="number" value="${v.qty}"><button class="btn" id="ok">Save</button>`);
+  $('#ok').onclick=async()=>{const d={sec:+$('#s').value||45,qty:+$('#qy').value||v.qty};if($('#rw').value)d.reward=+$('#rw').value;await updateDoc(doc(db,'videos',id),d);cl();load()}}
+ if(a=='av'){const v=vid($('#vu').value);if(!v)return toast('Invalid YouTube link');const d={owner:'admin',url:'https://www.youtube.com/watch?v='+v,vid:v,type:$('#vt').value,qty:+$('#vq').value||100,sec:+$('#vs').value||45,coins:0,done:0,status:'active',t:Date.now()};if($('#vr').value)d.reward=+$('#vr').value;
+  await addDoc(collection(db,'videos'),d);toast('Video added. It now shows in user tabs.');tab='vid';load()}
+ if(a=='sb'){const ti=$('#bt').value.trim(),bo=$('#bb').value.trim();if(!ti||!bo)return toast('Enter title and message');await addDoc(collection(db,'broadcasts'),{title:ti,body:bo,t:Date.now()});toast('Broadcast sent');load()}
+ if(a=='db'&&confirm('Delete broadcast?')){await deleteDoc(doc(db,'broadcasts',id));load()}});
 </script></body></html>
