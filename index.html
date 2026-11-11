@@ -88,6 +88,7 @@ function login(){const em=localStorage.getItem('em')||'';
  const er=m=>$('#er').textContent=m.replace('Firebase: ','');
  $('#si').onclick=()=>{localStorage.setItem('em',$('#e').value);signInWithEmailAndPassword(auth,$('#e').value,$('#p').value).catch(x=>er(x.message))};
  $('#su').onclick=async()=>{localStorage.setItem('em',$('#e').value);window._rc=$('#rc').value.trim().toUpperCase();try{const c=await createUserWithEmailAndPassword(auth,$('#e').value,$('#p').value);await updateProfile(c.user,{displayName:$('#n').value||$('#e').value.split('@')[0]})}catch(x){er(x.message)}};
+ if(OV())$('#go').style.display='none';
  $('#go').onclick=()=>signInWithPopup(auth,new GoogleAuthProvider()).catch(x=>er(x.message));
  $('#fp').onclick=()=>{const e=$('#e').value.trim();if(!e)return er('Enter your email first');sendPasswordResetEmail(auth,e).then(()=>er('Reset email sent. Check your inbox and spam folder.')).catch(x=>er(x.message))};}
 let unsub;
